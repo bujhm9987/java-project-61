@@ -42,4 +42,10 @@ doc
 /coverage
 .tool-versions
 .idea/
+build/
+app/build/
 app/assets/builds/
+app/build/*
+
+
+#
