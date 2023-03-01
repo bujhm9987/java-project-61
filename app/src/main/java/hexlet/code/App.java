@@ -8,6 +8,7 @@ public class App {
 
         System.out.println("Please enter the game number and press Enter.");
         System.out.println("1 - Greet");
+        System.out.println("2 - Even");
         System.out.println("0 - Exit");
         System.out.print("Your choice: ");
         int userChoice = Integer.parseInt(scanner.next());
@@ -16,7 +17,13 @@ public class App {
             case (0):
                 break;
             case (1):
-                Cli.greet();
+                System.out.println("Welcome to the Brain Games!");
+                System.out.print("May I have your name? ");
+                String userName = scanner.next();
+                System.out.println("Hello, " + userName + "!");
+                break;
+            case (2):
+                Even.main();
                 break;
             default:
                 System.out.println("You entered an invalid game number");
@@ -24,5 +31,4 @@ public class App {
         }
         scanner.close();
     }
-
 }
