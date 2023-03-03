@@ -4,18 +4,26 @@ import hexlet.code.Engine;
 
 import java.util.Random;
 
-public class Even {
+public class Prime {
     public static void main() {
         Engine.welcome();
         int randomBound = 100;
 
-        System.out.println("Answer 'yes' if the number is even, otherwise answer 'no'.");
+        System.out.println("Answer 'yes' if given number is prime. Otherwise answer 'no'.");
 
         while (Engine.countGame < 3) {
             int randomNumber = new Random().nextInt(randomBound);
+            int i = 2;
+            int j = 0;
+            while (i * i <= randomNumber && j != 1) {
+                if (randomNumber % i == 0) {
+                    j = 1;
+                }
+                i++;
+            }
 
+            Engine.result = j == 1 ? "no" : "yes";
             Engine.question = Integer.toString(randomNumber);
-            Engine.result = (randomNumber % 2 == 0) ? "yes" : "no";
             Engine.answer();
             Engine.checkResult();
         }
