@@ -3,8 +3,9 @@ package hexlet.code;
 import java.util.Scanner;
 
 public class Engine {
-    public static final int maxCountGame = 3;
-    public static final int randomBound = 100;
+    public static final int MAX_COUNT_GAME = 3;
+    public static final int RANDOM_BOUND = 100;
+    public static final String WRONG_ANSWER = "' is wrong answer ;(. Correct answer was '";
 
     public static void game(String rulesGame, String[] listQuestion, String[] listAnswer) {
         String playerName;
@@ -18,7 +19,7 @@ public class Engine {
         System.out.println("Hello, " + playerName + "!");
         System.out.println(rulesGame);
 
-        while (countGame < 3) {
+        while (countGame < MAX_COUNT_GAME) {
             System.out.println("Question: " + listQuestion[i]);
             System.out.print("Your answer: ");
             String playerAnswer = scanner.next();
@@ -26,14 +27,14 @@ public class Engine {
                 countGame++;
                 System.out.println("Correct!");
             } else {
-                countGame = 4;
-                System.out.println("'" + playerAnswer + "' is wrong answer ;(. Correct answer was '" + listAnswer[i] + "'");
+                countGame = MAX_COUNT_GAME + 1;
+                System.out.println("'" + playerAnswer + WRONG_ANSWER + listAnswer[i] + "'");
                 System.out.println("Let's try again, " + playerName + "!");
             }
             i++;
         }
 
-        if (countGame == 3) {
+        if (countGame == MAX_COUNT_GAME) {
             System.out.println("Congratulations, " + playerName + "!");
         }
     }

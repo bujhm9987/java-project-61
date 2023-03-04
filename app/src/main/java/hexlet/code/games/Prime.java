@@ -7,10 +7,10 @@ import java.util.Random;
 public class Prime {
     public static void main() {
         String rulesGame = "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
-        String[] listQuestion = new String[Engine.maxCountGame];
-        String[] listAnswer = new String[Engine.maxCountGame];
-        for (int i = 0; i < Engine.maxCountGame; i++) {
-            int randomNumber = new Random().nextInt(Engine.randomBound -2) + 2;
+        String[] listQuestion = new String[Engine.MAX_COUNT_GAME];
+        String[] listAnswer = new String[Engine.MAX_COUNT_GAME];
+        for (int i = 0; i < Engine.MAX_COUNT_GAME; i++) {
+            int randomNumber = new Random().nextInt(Engine.RANDOM_BOUND - 2) + 2;
             int m = 2;
             int n = 0;
             while (m * m <= randomNumber && n != 1) {
