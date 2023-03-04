@@ -6,26 +6,22 @@ import java.util.Random;
 
 public class Prime {
     public static void main() {
-        Engine.welcome();
-        int randomBound = 98;
-
-        System.out.println("Answer 'yes' if given number is prime. Otherwise answer 'no'.");
-
-        while (Engine.countGame < 3) {
-            int randomNumber = new Random().nextInt(randomBound) + 2;
-            int i = 2;
-            int j = 0;
-            while (i * i <= randomNumber && j != 1) {
-                if (randomNumber % i == 0) {
-                    j = 1;
+        String rulesGame = "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
+        String[] listQuestion = new String[Engine.maxCountGame];
+        String[] listAnswer = new String[Engine.maxCountGame];
+        for (int i = 0; i < Engine.maxCountGame; i++) {
+            int randomNumber = new Random().nextInt(Engine.randomBound -2) + 2;
+            int m = 2;
+            int n = 0;
+            while (m * m <= randomNumber && n != 1) {
+                if (randomNumber % m == 0) {
+                    n = 1;
                 }
-                i++;
+                m++;
             }
-
-            Engine.result = j == 1 ? "no" : "yes";
-            Engine.question = Integer.toString(randomNumber);
-            Engine.answer();
-            Engine.checkResult();
+            listQuestion[i] = Integer.toString(randomNumber);
+            listAnswer[i] = n == 1 ? "no" : "yes";
         }
+        Engine.game(rulesGame, listQuestion, listAnswer);
     }
 }

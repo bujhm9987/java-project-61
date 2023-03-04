@@ -6,30 +6,27 @@ import java.util.Random;
 
 public class Progression {
     public static void main() {
-        Engine.welcome();
-        int randomBound = 100;
+        String rulesGame = "What number is missing in the progression?";
+        String[] listQuestion = new String[Engine.maxCountGame];
+        String[] listAnswer = new String[Engine.maxCountGame];
         int minBound = 6;
 
-        System.out.println("What number is missing in the progression?");
-
-        while (Engine.countGame < 3) {
+        for (int i = 0; i < Engine.maxCountGame; i++) {
             int sizeArray = new Random().nextInt(minBound) + 5;
             String[] arrayProgression = new String[sizeArray];
-            int firstNumer = new Random().nextInt(randomBound - sizeArray);
-            arrayProgression[0] = Integer.toString(firstNumer);
-            int maxStepProgress = (randomBound - firstNumer) / sizeArray;
+            int firstNumber = new Random().nextInt(Engine.randomBound - sizeArray);
+            arrayProgression[0] = Integer.toString(firstNumber);
+            int maxStepProgress = (Engine.randomBound - firstNumber) / sizeArray;
             int rndStepProgress = new Random().nextInt(maxStepProgress) + 1;
-            for (int i = 1; i < sizeArray; i++) {
-                arrayProgression[i] = Integer.toString(Integer.parseInt(arrayProgression[i - 1]) + rndStepProgress);
+            for (int j = 1; j < sizeArray; j++) {
+                arrayProgression[j] = Integer.toString(Integer.parseInt(arrayProgression[j - 1]) + rndStepProgress);
             }
             int randomIndex = new Random().nextInt(sizeArray);
 
-            Engine.result = arrayProgression[randomIndex];
+            listAnswer[i] = arrayProgression[randomIndex];
             arrayProgression[randomIndex] = "..";
-            Engine.question = String.join(" ", arrayProgression);
-            Engine.answer();
-            Engine.checkResult();
+            listQuestion[i] = String.join(" ", arrayProgression);
         }
+        Engine.game(rulesGame, listQuestion, listAnswer);
     }
-
 }

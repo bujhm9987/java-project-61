@@ -5,14 +5,13 @@ import hexlet.code.Engine;
 import java.util.Random;
 public class Gcd {
     public static void main() {
-        Engine.welcome();
-        int randomBound = 100;
+        String rulesGame = "Find the greatest common divisor of given numbers.";
+        String[] listQuestion = new String[Engine.maxCountGame];
+        String[] listAnswer = new String[Engine.maxCountGame];
 
-        System.out.println("Find the greatest common divisor of given numbers.");
-
-        while (Engine.countGame < 3) {
-            int randomNumber1 = new Random().nextInt(randomBound);
-            int randomNumber2 = new Random().nextInt(randomBound);
+        for (int i = 0; i < Engine.maxCountGame; i++) {
+            int randomNumber1 = new Random().nextInt(Engine.randomBound);
+            int randomNumber2 = new Random().nextInt(Engine.randomBound);
             int a = randomNumber1;
             int b = randomNumber2;
             while (a != 0 && b != 0) {
@@ -22,12 +21,9 @@ public class Gcd {
                     b -= a;
                 }
             }
-            int gcd = a + b;
-
-            Engine.question = randomNumber1 + " " + randomNumber2;
-            Engine.result = Integer.toString(gcd);
-            Engine.answer();
-            Engine.checkResult();
+            listQuestion[i] = randomNumber1 + " " + randomNumber2;
+            listAnswer[i] = Integer.toString(a + b);
         }
+        Engine.game(rulesGame, listQuestion, listAnswer);
     }
 }

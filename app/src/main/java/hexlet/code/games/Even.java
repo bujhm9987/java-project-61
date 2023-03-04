@@ -4,20 +4,16 @@ import hexlet.code.Engine;
 
 import java.util.Random;
 
-public class Even {
+public final class Even {
     public static void main() {
-        Engine.welcome();
-        int randomBound = 100;
-
-        System.out.println("Answer 'yes' if the number is even, otherwise answer 'no'.");
-
-        while (Engine.countGame < 3) {
-            int randomNumber = new Random().nextInt(randomBound);
-
-            Engine.question = Integer.toString(randomNumber);
-            Engine.result = (randomNumber % 2 == 0) ? "yes" : "no";
-            Engine.answer();
-            Engine.checkResult();
+        String rulesGame = "Answer 'yes' if the number is even, otherwise answer 'no'.";
+        String[] listQuestion = new String[Engine.maxCountGame];
+        String[] listAnswer = new String[Engine.maxCountGame];
+        for (int i = 0; i < Engine.maxCountGame; i++) {
+            int randomNumber = new Random().nextInt(Engine.randomBound);
+            listQuestion[i] = Integer.toString(randomNumber);
+            listAnswer[i] = (randomNumber % 2 == 0) ? "yes" : "no";
         }
+        Engine.game(rulesGame, listQuestion, listAnswer);
     }
 }

@@ -19,35 +19,25 @@ public class App {
         System.out.println("4 - GCD");
         System.out.println("5 - Progression");
         System.out.println("6 - Prime");
-
         System.out.println("0 - Exit");
         System.out.print("Your choice: ");
         String userChoice = scanner.next();
 
         switch (userChoice) {
-            case ("0"):
-                break;
-            case ("1"):
-                Engine.welcome();
-                break;
-            case ("2"):
-                Even.main();
-                break;
-            case ("3"):
-                Calc.main();
-                break;
-            case ("4"):
-                Gcd.main();
-                break;
-            case ("5"):
-                Progression.main();
-                break;
-            case ("6"):
-                Prime.main();
-                break;
-            default:
-                System.out.println("You entered an invalid game number");
-                break;
+            case ("0") -> {
+            }
+            case ("1") -> {
+                System.out.println("Welcome to the Brain Games!");
+                System.out.print("May I have your name? ");
+                String playerName = scanner.next();
+                System.out.println("Hello, " + playerName + "!");
+            }
+            case ("2") -> Even.main();
+            case ("3") -> Calc.main();
+            case ("4") -> Gcd.main();
+            case ("5") -> Progression.main();
+            case ("6") -> Prime.main();
+            default -> System.out.println("You entered an invalid game number");
         }
         scanner.close();
     }
