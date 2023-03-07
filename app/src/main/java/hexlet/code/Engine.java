@@ -3,11 +3,8 @@ package hexlet.code;
 import java.util.Scanner;
 
 public class Engine {
-    public static final int MAX_COUNT_GAME = 3;
-    public static final int RANDOM_BOUND = 100;
-    public static final String WRONG_ANSWER = "' is wrong answer ;(. Correct answer was '";
 
-    public static void game(String rulesGame, String[] listQuestion, String[] listAnswer) {
+    public static void game(String rulesGame, String[][] listAnswerQuestion) {
         String playerName;
         Scanner scanner = new Scanner(System.in);
         int countGame = 0;
@@ -19,23 +16,21 @@ public class Engine {
         System.out.println("Hello, " + playerName + "!");
         System.out.println(rulesGame);
 
-        while (countGame < MAX_COUNT_GAME) {
-            System.out.println("Question: " + listQuestion[i]);
+        while (countGame < Constant.MAX_COUNT_GAME) {
+            System.out.println("Question: " + listAnswerQuestion[i][0]);
             System.out.print("Your answer: ");
             String playerAnswer = scanner.next();
-            if (playerAnswer.equals(listAnswer[i])) {
+            if (!playerAnswer.equals(listAnswerQuestion[i][1])) {
+                System.out.printf(Constant.WRONG_ANSWER, playerAnswer, listAnswerQuestion[i][1]);
+                System.out.println();
+                System.out.println("Let's try again, " + playerName + "!");
+                return;
+            } else {
                 countGame++;
                 System.out.println("Correct!");
-            } else {
-                countGame = MAX_COUNT_GAME + 1;
-                System.out.println("'" + playerAnswer + WRONG_ANSWER + listAnswer[i] + "'");
-                System.out.println("Let's try again, " + playerName + "!");
             }
             i++;
         }
-
-        if (countGame == MAX_COUNT_GAME) {
-            System.out.println("Congratulations, " + playerName + "!");
-        }
+        System.out.println("Congratulations, " + playerName + "!");
     }
 }

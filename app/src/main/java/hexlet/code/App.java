@@ -24,14 +24,8 @@ public class App {
         String userChoice = scanner.next();
 
         switch (userChoice) {
-            case ("0") -> {
-            }
-            case ("1") -> {
-                System.out.println("Welcome to the Brain Games!");
-                System.out.print("May I have your name? ");
-                String playerName = scanner.next();
-                System.out.println("Hello, " + playerName + "!");
-            }
+            case ("0") -> System.out.println("Goodbye!");
+            case ("1") -> Cli.greet();
             case ("2") -> Even.main();
             case ("3") -> Calc.main();
             case ("4") -> Gcd.main();
