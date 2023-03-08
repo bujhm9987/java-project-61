@@ -12,18 +12,22 @@ public class Gcd {
         for (int i = 0; i < Constant.MAX_COUNT_GAME; i++) {
             int randomNumber1 = new Random().nextInt(Constant.RANDOM_BOUND);
             int randomNumber2 = new Random().nextInt(Constant.RANDOM_BOUND);
-            int a = randomNumber1;
-            int b = randomNumber2;
-            while (a != 0 && b != 0) {
-                if (a > b) {
-                    a -= b;
-                } else {
-                    b -= a;
-                }
-            }
+
             listAnswerQuestion[i][0] = randomNumber1 + " " + randomNumber2;
-            listAnswerQuestion[i][1] = Integer.toString(a + b);
+            listAnswerQuestion[i][1] = generateAnswer(randomNumber1, randomNumber2);
         }
         Engine.game(rulesGame, listAnswerQuestion);
+    }
+    public static String generateAnswer(int number1, int number2) {
+        int a = number1;
+        int b = number2;
+        while (a != 0 && b != 0) {
+            if (a > b) {
+                a -= b;
+            } else {
+                b -= a;
+            }
+        }
+        return Integer.toString(a + b);
     }
 }

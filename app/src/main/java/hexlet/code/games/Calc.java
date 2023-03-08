@@ -15,21 +15,37 @@ public class Calc {
             int randomNumber1 = new Random().nextInt(Constant.RANDOM_BOUND);
             int randomNumber2 = new Random().nextInt(Constant.RANDOM_BOUND);
             int numberOperation = new Random().nextInt(countOperation); // Операции 0(+), 1(-), 2(*)
-            switch (numberOperation) {
-                case (0) -> {
-                    listAnswerQuestion[i][0] = randomNumber1 + " + " + randomNumber2;
-                    listAnswerQuestion[i][1] = Integer.toString(randomNumber1 + randomNumber2);
-                }
-                case (1) -> {
-                    listAnswerQuestion[i][0] = randomNumber1 + " - " + randomNumber2;
-                    listAnswerQuestion[i][1] = Integer.toString(randomNumber1 - randomNumber2);
-                }
-                default -> {
-                    listAnswerQuestion[i][0] = randomNumber1 + " * " + randomNumber2;
-                    listAnswerQuestion[i][1] = Integer.toString(randomNumber1 * randomNumber2);
-                }
-            }
+
+            listAnswerQuestion[i][0] = generateQuestion(randomNumber1, randomNumber2, numberOperation);
+            listAnswerQuestion[i][1] = generateAnswer(randomNumber1, randomNumber2, numberOperation);
+
         }
         Engine.game(rulesGame, listAnswerQuestion);
+    }
+    public static String generateQuestion(int number1, int number2, int numOperation) {
+        switch (numOperation) {
+            case (0) -> {
+                return number1 + " + " + number2;
+            }
+            case (1) -> {
+                return number1 + " - " + number2;
+            }
+            default -> {
+                return number1 + " * " + number2;
+            }
+        }
+    }
+    public static String generateAnswer(int number1, int number2, int numOperation) {
+        switch (numOperation) {
+            case (0) -> {
+                return Integer.toString(number1 + number2);
+            }
+            case (1) -> {
+                return Integer.toString(number1 - number2);
+            }
+            default -> {
+                return Integer.toString(number1 * number2);
+            }
+        }
     }
 }
