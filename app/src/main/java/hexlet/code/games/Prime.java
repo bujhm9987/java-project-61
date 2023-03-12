@@ -1,21 +1,31 @@
 package hexlet.code.games;
 
-import hexlet.code.Constant;
 import hexlet.code.Engine;
 
 import java.util.Random;
 
 public class Prime {
     public static void main() {
+        final int maxCountGame = 3;
         String rulesGame = "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
-        String[][] listAnswerQuestion = new String[Constant.MAX_COUNT_GAME][2];
-        for (int i = 0; i < Constant.MAX_COUNT_GAME; i++) {
-            int randomNumber = new Random().nextInt(Constant.RANDOM_BOUND - 2) + 2;
+        String[][] listAnswerQuestion = new String[maxCountGame][2];
+        String[] answerQuestion;
 
-            listAnswerQuestion[i][0] = Integer.toString(randomNumber);
-            listAnswerQuestion[i][1] = generateAnswer(randomNumber);
+        for (int i = 0; i < maxCountGame; i++) {
+            answerQuestion = generateRoundData();
+            listAnswerQuestion[i][0] = answerQuestion[0];
+            listAnswerQuestion[i][1] = answerQuestion[1];
         }
         Engine.game(rulesGame, listAnswerQuestion);
+    }
+    private static String[] generateRoundData() {
+        final int randomBound = 98;
+        String[] answerQuestion = new String[2];
+        int randomNumber = new Random().nextInt(randomBound) + 2;
+
+        answerQuestion[0] = Integer.toString(randomNumber);
+        answerQuestion[1] = generateAnswer(randomNumber);
+        return answerQuestion;
     }
     public static String generateAnswer(int number) {
         int m = 2;

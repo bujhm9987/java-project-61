@@ -7,8 +7,7 @@ public class Engine {
     public static void game(String rulesGame, String[][] listAnswerQuestion) {
         String playerName;
         Scanner scanner = new Scanner(System.in);
-        int countGame = 0;
-        int i = 0;
+        String wrongAnswer = "'%s' is wrong answer ;(. Correct answer was '%s'";
 
         System.out.println("Welcome to the Brain Games!");
         System.out.print("May I have your name? ");
@@ -16,20 +15,17 @@ public class Engine {
         System.out.println("Hello, " + playerName + "!");
         System.out.println(rulesGame);
 
-        while (countGame < Constant.MAX_COUNT_GAME) {
-            System.out.println("Question: " + listAnswerQuestion[i][0]);
+        for (String[] answerQuestion : listAnswerQuestion) {
+            System.out.println("Question: " + answerQuestion[0]);
             System.out.print("Your answer: ");
             String playerAnswer = scanner.next();
-            if (!playerAnswer.equals(listAnswerQuestion[i][1])) {
-                System.out.printf(Constant.WRONG_ANSWER, playerAnswer, listAnswerQuestion[i][1]);
+            if (!playerAnswer.equals(answerQuestion[1])) {
+                System.out.printf(wrongAnswer, playerAnswer, answerQuestion[1]);
                 System.out.println();
                 System.out.println("Let's try again, " + playerName + "!");
                 return;
-            } else {
-                countGame++;
-                System.out.println("Correct!");
             }
-            i++;
+            System.out.println("Correct!");
         }
         System.out.println("Congratulations, " + playerName + "!");
     }
