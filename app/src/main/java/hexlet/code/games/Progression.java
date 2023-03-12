@@ -5,23 +5,24 @@ import hexlet.code.Engine;
 import java.util.Random;
 
 public class Progression {
+    private static final int MAX_COUNT_GAME = 3;
+    private static final int RANDOM_BOUND = 100;
+    private static final int MIN_BOUND = 6;
+    private static final String RULES_GAME = "What number is missing in the progression?";
     public static void main() {
-        final int maxCountGame = 3;
-        String rulesGame = "What number is missing in the progression?";
-        String[][] listAnswerQuestion = new String[maxCountGame][2];
+        String[][] listAnswerQuestion = new String[MAX_COUNT_GAME][2];
         String[] answerQuestion;
 
-        for (int i = 0; i < maxCountGame; i++) {
+        for (int i = 0; i < MAX_COUNT_GAME; i++) {
             answerQuestion = generateRoundData();
             listAnswerQuestion[i][0] = answerQuestion[0];
             listAnswerQuestion[i][1] = answerQuestion[1];
         }
-        Engine.game(rulesGame, listAnswerQuestion);
+        Engine.game(RULES_GAME, listAnswerQuestion);
     }
     private static String[] generateRoundData() {
-        final int minBound = 6;
         String[] answerQuestion = new String[2];
-        int sizeArray = new Random().nextInt(minBound) + minBound - 1;
+        int sizeArray = new Random().nextInt(MIN_BOUND) + MIN_BOUND - 1;
         int randomIndex = new Random().nextInt(sizeArray);
         String[] progression = generateProgression(sizeArray);
 
@@ -31,10 +32,9 @@ public class Progression {
         return answerQuestion;
     }
     public static String[] generateProgression(int sizeArray) {
-        final int randomBound = 100;
         String[] progression = new String[sizeArray];
-        int firstNumber = new Random().nextInt(randomBound - sizeArray);
-        int maxStepProgress = (randomBound - firstNumber) / sizeArray;
+        int firstNumber = new Random().nextInt(RANDOM_BOUND - sizeArray);
+        int maxStepProgress = (RANDOM_BOUND - firstNumber) / sizeArray;
         int rndStepProgress = new Random().nextInt(maxStepProgress) + 1;
 
         progression[0] = Integer.toString(firstNumber);
