@@ -46,6 +46,7 @@ build/
 app/build/
 app/assets/builds/
 app/build/*
+app/.gradle/
 
 
 #

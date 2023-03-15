@@ -1,20 +1,21 @@
 package hexlet.code.games;
 
 import hexlet.code.Engine;
-
-import java.util.Random;
+import hexlet.code.Utils;
 
 public class Progression {
     private static final int MAX_COUNT_GAME = 3;
-    private static final int RANDOM_BOUND = 100;
-    private static final int MIN_BOUND = 6;
+    private static final int MAX_RANDOM_BOUND = 100;
+    private static final int MIN_RANDOM_BOUND = 0;
+    private static final int MIN_SIZE_PROGRESS = 5;
+    private static final int MAX_SIZE_PROGRESS = 10;
+    private static final int MIN_STEP_PROGRESS = 1;
     private static final String RULES_GAME = "What number is missing in the progression?";
     public static void main() {
         String[][] listAnswerQuestion = new String[MAX_COUNT_GAME][2];
-        String[] answerQuestion;
 
         for (int i = 0; i < MAX_COUNT_GAME; i++) {
-            answerQuestion = generateRoundData();
+            String[] answerQuestion = generateRoundData();
             listAnswerQuestion[i][0] = answerQuestion[0];
             listAnswerQuestion[i][1] = answerQuestion[1];
         }
@@ -22,24 +23,26 @@ public class Progression {
     }
     private static String[] generateRoundData() {
         String[] answerQuestion = new String[2];
-        int sizeArray = new Random().nextInt(MIN_BOUND) + MIN_BOUND - 1;
-        int randomIndex = new Random().nextInt(sizeArray);
-        String[] progression = generateProgression(sizeArray);
+        int sizeProgress = Utils.generateNumber(MIN_SIZE_PROGRESS, MAX_SIZE_PROGRESS);
+        int firstNumProgress = Utils.generateNumber(MIN_RANDOM_BOUND, MAX_RANDOM_BOUND - sizeProgress);
+
+        int maxBoundProgress = (MAX_RANDOM_BOUND - firstNumProgress) / sizeProgress;
+        int stepProgress = Utils.generateNumber(MIN_STEP_PROGRESS, maxBoundProgress);
+
+        String[] progression = generateProgression(firstNumProgress, sizeProgress, stepProgress);
+        int randomIndex = Utils.generateNumber(0, sizeProgress - 1);
 
         answerQuestion[1] = progression[randomIndex];
         progression[randomIndex] = "..";
         answerQuestion[0] = String.join(" ", progression);
         return answerQuestion;
     }
-    public static String[] generateProgression(int sizeArray) {
-        String[] progression = new String[sizeArray];
-        int firstNumber = new Random().nextInt(RANDOM_BOUND - sizeArray);
-        int maxStepProgress = (RANDOM_BOUND - firstNumber) / sizeArray;
-        int rndStepProgress = new Random().nextInt(maxStepProgress) + 1;
+    public static String[] generateProgression(int firstNumProgress, int sizeProgress, int stepProgress) {
+        String[] progression = new String[sizeProgress];
 
-        progression[0] = Integer.toString(firstNumber);
-        for (int j = 1; j < sizeArray; j++) {
-            progression[j] = Integer.toString(Integer.parseInt(progression[j - 1]) + rndStepProgress);
+        progression[0] = Integer.toString(firstNumProgress);
+        for (int j = 1; j < sizeProgress; j++) {
+            progression[j] = Integer.toString(Integer.parseInt(progression[j - 1]) + stepProgress);
         }
         return progression;
     }
